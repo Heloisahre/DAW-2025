@@ -1,19 +1,19 @@
-import { MovieContent } from "./cases/movies/components/movie-content"
-import { Footer } from "./components/layout/footer"
-import { Header } from "./components/layout/layout/header"
-import { Navbar } from "./components/layout/layout/navbar"
+import { MovieContent } from "./cases/movies/components/movie-content";
+import { Footer } from "./components/layout/footer";
+import { Header } from "./components/layout/header";
+import { Navbar } from "./components/layout/navbar";
 
 function App() {
   return (
     <>
       <Header />
-      <main> 
+      <main>
         <Navbar />
-        <MovieContent/>
+        <MovieContent />
       </main>
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,34 +1,31 @@
-import { Facebook, Instagram, Youtube } from "lucide-react";
-import { FooterLink } from "./ui/footer-link";
+import { Instagram, Facebook, Youtube } from "lucide-react";
+import { FooterLink } from "../ui/footer-link";
 
 export function Footer() {
-
-    return(
-            <footer className="bg-[#1c1c1c] border-t[#333] p-12">
-            <div className="my-0 mx-auto max-w-6xl flex  items-center flex-col">
-                <p className =" text-[#a0a0a0] text-xs "></p>
-                <ul className = "flex list-none mt-4  gap-3">
-
+    return (
+        <footer className="bg-[#1c1c1c] border-t border-[#333] p-12">
+            <div className="my-0 mx-auto max-w-6xl flex flex-col items-center">
+                <p className="text-[#a0a0a0] text-xs">
+                    The MovieBox 2025 - All rights reserved
+                </p>
+                <ul className="flex list-none mt-4 gap-3">
                     <li>
                         <FooterLink>
-                            <Facebook/>
+                            <Facebook />
                         </FooterLink>
                     </li>
-
                     <li>
                         <FooterLink>
-                            <Instagram/>
+                            <Instagram />
                         </FooterLink>
-
-                        </li>
-
+                    </li>
                     <li>
                         <FooterLink>
-                            <Youtube/>
+                            <Youtube />
                         </FooterLink>
-                            </li>
+                    </li>
                 </ul>
             </div>
         </footer>
-    )
+    );
 }
