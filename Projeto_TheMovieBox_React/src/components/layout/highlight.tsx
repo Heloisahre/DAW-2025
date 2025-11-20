@@ -1,45 +1,90 @@
-import React from "react";
+import { MovieGenres } from "../../cases/movies/components/movie-genres";
+import { useMovies } from "../../cases/movies/hooks/use-hook";
 
 export function Highlight() {
-    return (
-        <section className="relative w-full bg-zinc-950 py-10 md:py-16">
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/90 pointer-events-none"></div>
+    const { selectedMovie } = useMovies();
 
-            <div className="relative max-w-6xl mx-auto px-4 flex flex-col md:flex-row gap-8 items-center">
+    // Enquanto não tiver filme selecionado, mostra o loading
+    if (!selectedMovie) {
+        return (
+            <div className="flex justify-center items-center">
+                <p className="text-2xl text-center text-white">Carregando...</p>
+            </div>
+        );
+    }
+
+    return (
+        <section
+            className="relative flex bg-cover"
+            style={{
+                backgroundImage: `url(${selectedMovie.highlight})`,
+                backgroundPosition: "left calc((50vw - 170px) - 340px) top",
+            }}
+        >
+            <div
+                className="absolute top-0 left-0 w-full h-full z-10"
+                style={{
+                    backgroundImage:
+                        "linear-gradient(to right, rgba(17, 17, 17, 1) calc((50vw - 70px) - 340px), rgba(17, 17, 17, 0.7) 50%, rgba(17, 17, 17, 0.7) 100%)",
+                }}
+            />
+
+            <div className="mx-auto max-w-6xl flex gap-8 py-8 z-20">
                 <img
-                    src="/img/q5pXRYTycaeW6dEgsCrd4mYPmxM.jpg"
-                    alt="Capa Filme"
-                    className="w-56 md:w-64 lg:w-72 rounded-lg shadow-lg object-cover"
+                    className="rounded-lg"
+                    src={selectedMovie.image}
+                    alt="Imagem do Filme"
                 />
 
-                <div className="text-white space-y-4 md:space-y-5 flex-1">
-                    <h2 className="text-3xl md:text-4xl font-bold">Como Treinar o Seu Dragão</h2>
+                <div className="flex flex-col">
+                    <h2 className="text-[2.5rem] font-normal">{selectedMovie.title}</h2>
 
-                    <div className="flex flex-wrap gap-2 text-sm md:text-base">
-                        <span className="bg-white/10 border border-white/10 px-3 py-1 rounded-full">Fantasia</span>
-                        <span className="bg-white/10 border border-white/10 px-3 py-1 rounded-full">Família</span>
-                        <span className="bg-white/10 border border-white/10 px-3 py-1 rounded-full">Ação e Aventura</span>
-                        <span className="text-slate-200 px-3 py-1">2h e 5m</span>
+                    <MovieGenres movie={selectedMovie}>
+                        <span className="pl-4 text-gray-300">
+                            {selectedMovie.duration.replace(":", "h ") + "m"}
+                        </span>
+                    </MovieGenres>
+
+                    <div className="flex flex-col gap-2">
+                        <h4 className="font-normal pt-12 pb-2 text-2xl">Sinopse</h4>
+                        <p className="text-[#a0a0a0] text-sm">{selectedMovie.sinopse}</p>
                     </div>
 
-                    <div className="space-y-2">
-                        <h4 className="text-lg font-semibold">Sinopse</h4>
-                        <p className="text-slate-200 text-sm md:text-base leading-relaxed">
-                            Em um mundo onde dragões e humanos coexistem, um jovem viking chamado Soluço se torna amigo de um
-                            dragão ferido chamado Banguela. Juntos, eles desafiam as tradições de suas tribos e descobrem que
-                            dragões não são os monstros que todos acreditavam ser.
-                        </p>
-                    </div>
-
-                    <div className="flex flex-wrap gap-3">
-                        <button className="bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2 rounded-md transition">
+                    <div className="flex gap-4 my-6">
+                        <button
+                            className="
+                bg-[#e50914] text-white
+                border-none py-3 px-6 rounded
+                font-bold transition-colors
+                cursor-pointer
+                hover:bg-[#b8070f]
+              "
+                        >
                             Assistir
                         </button>
-                        <button className="bg-white/10 hover:bg-white/20 text-white font-semibold px-5 py-2 rounded-md transition">
+
+                        <button
+                            className="
+                bg-white/20 text-white
+                border border-white/30
+                py-3 px-6 rounded
+                transition-colors
+                hover:bg-white/30
+              "
+                        >
                             Detalhes
                         </button>
-                        <button className="bg-white/10 hover:bg-white/20 text-white font-semibold px-5 py-2 rounded-md transition">
-                            Adicionar à lista
+
+                        <button
+                            className="
+                bg-white/20 text-white
+                border border-white/30
+                py-3 px-6 rounded
+                transition-colors
+                hover:bg-white/30
+              "
+                        >
+                            + Adicionar à Lista
                         </button>
                     </div>
                 </div>

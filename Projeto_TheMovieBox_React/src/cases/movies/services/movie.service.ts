@@ -4,14 +4,17 @@ export type MovieDTO = {
     title: string;
     year: number;
     image: string;
+    genres: string;
+    duration: string;
+    sinopse: string;
+    highlight: string;
 };
 
-const _ENDPOINT = '/movie?key=475e6490';
+const _ENDPOINT = "/movies?key=347a9dd0";
 
 export const MovieService = {
     async list(): Promise<MovieDTO[]> {
-        const result = await api.get(_ENDPOINT);
-        console.log(result)
+        const result = await api.get<MovieDTO[]>(_ENDPOINT);
         return result.data;
     },
 };
